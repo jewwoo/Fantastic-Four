@@ -36,40 +36,17 @@ public class SearchForm extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String keywords = tfKeywords.getText();
                 System.out.println(keywords);
-            }
-        });
-
-        listDiet.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
                 System.out.println(listDiet.getSelectedValuesList());
-            }
-        });
-        listHealth.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
                 System.out.println(listHealth.getSelectedValuesList());
-            }
-        });
-        listMealType.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
                 System.out.println(listMealType.getSelectedValuesList());
-            }
-        });
-        listDishType.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
                 System.out.println(listDishType.getSelectedValuesList());
-            }
-        });
-        listCuisineType.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
                 System.out.println(listCuisineType.getSelectedValuesList());
+
+
             }
         });
     }
+
 
     public static void main(String[] args) {
         SearchForm searchform = new SearchForm();
