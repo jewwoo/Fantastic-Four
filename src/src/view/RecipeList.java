@@ -10,9 +10,9 @@ public class RecipeList extends JFrame{
     private JLabel lbResultNum;
     private JList listRecipe;
     private JButton btnOK;
-    private JPanel pnRecipe;
     private JTextField tfInput;
     private JPanel listPanel;
+    private JLabel lbTitle;
 
     public RecipeList(){
         setContentPane(listPanel);
