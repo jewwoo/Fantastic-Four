@@ -85,12 +85,25 @@ public class SearchForm extends JFrame {
 
             // You can set a listener in SearchForm to be notified when the search is done
             searchForm.setSearchCompleteListener(recipeData -> {
-                RecipeList recipeList = new RecipeList(recipeData);
+                RecipeList recipeList1 = new RecipeList(recipeData);
 
                 // Set the default close operation to dispose when closing
-                recipeList.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                recipeList.setVisible(true);
-                });
+                recipeList1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                recipeList1.setVisible(true);
+
+                // Assuming you have recipeData from Controller.gethit()
+                ArrayList<String> newRecipeData = Controller.gethit();
+
+                // Create a new instance of RecipeList for the second window
+                RecipeList recipeList2 = new RecipeList(newRecipeData);
+
+                // Set the default close operation to dispose when closing
+                recipeList2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                recipeList2.setVisible(true);
+
+                // Hide the first window
+                recipeList1.setVisible(false);
+            });
         });
 
     }
