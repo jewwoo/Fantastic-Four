@@ -38,13 +38,15 @@ public class GetInput {
 
             if (arr_length > 0) {
                 success = true;
+                Controller.setResultData(data, index, arr_length);
             } else {
+                Controller.setResultData(null, 0, 0);
                 //System.out.println("no recipe was found according to your selected criteria");
                 //System.out.println("");
                 //System.out.print("");
                 return;
             }
-            Controller.setResultData(data, index, arr_length);
+
             //System.out.println("11111");
             //RecipesDisplayer recipesDisplayer = new RecipesDisplayer();
             //System.out.println("222222");

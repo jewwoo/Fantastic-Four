@@ -1,7 +1,6 @@
 package view;
 
 import interface_adapter.*;
-import use_case.*;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -23,15 +22,15 @@ public class RecipeList extends JFrame {
         setSize(450, 600);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
-        ArrayList<String> recipeData = Controller.gethit();
-        listRecipe.setListData(new String[]{});
+        //ArrayList<String> recipeData = Controller.gethit();
+        //listRecipe.setListData(new String[]{});
         btnOK.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String input = tfInput.getText();
                 // Set user choice in the controller
                 Controller.setUserChoice(input);
-                RecipesDisplayer2.DisplayRecipes();
+                //RecipesDisplayer2.DisplayRecipes();
             }
             //System.out.println(input);
         });
@@ -44,12 +43,8 @@ public class RecipeList extends JFrame {
         this.inputListener = inputListener;
     }
     public static void main(String[] args) {
-        // Assuming you have recipeData from Controller.gethit()
-        ArrayList<String> recipeData = Controller.gethit();
-
-        // Create an instance of RecipeList
-        RecipeList recipeList = new RecipeList(null);
-        recipeList.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        recipeList.setVisible(true);
+        //RecipeList recipeList = new RecipeList(null);
+        //recipeList.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //recipeList.setVisible(true);
     }
 }
