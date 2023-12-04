@@ -1,7 +1,7 @@
 package view;
 
-import interface_adapter.search.Controller;
-import use_case.seach.RecipesDisplayer2;
+import interface_adapter.*;
+import use_case.*;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -14,6 +14,7 @@ public class RecipeList extends JFrame {
     private JTextField tfInput;
     private JPanel listPanel;
     private JLabel lbTitle;
+    private JButton btnSAVE;
     private SearchCompleteListener inputListener;
     private int currentIndex;
     public RecipeList(ArrayList<String> recipeDat) {
