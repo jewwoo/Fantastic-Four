@@ -48,7 +48,7 @@ public class SearchFilterInputData {
             //System.out.println("11111");
             //RecipesDisplayer recipesDisplayer = new RecipesDisplayer();
             //System.out.println("222222");
-            RecipesDisplayer.DisplayRecipes();
+            SearchFilterOuputData.DisplayRecipes();
             //System.out.println("333333");
             //RecipesDisplayer.DisplayRecipes(data, index, arr_length, scanner);
         }
