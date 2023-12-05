@@ -1,7 +1,7 @@
 package view;
 
-import interface_adapter.*;
-import use_case.*;
+import interface_adapter.search_form.SearchFormController;
+import use_case.search.RecipesDisplayer2;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -14,7 +14,6 @@ public class RecipeList extends JFrame {
     private JTextField tfInput;
     private JPanel listPanel;
     private JLabel lbTitle;
-    private JButton btnSAVE;
     private SearchCompleteListener inputListener;
     private int currentIndex;
     public RecipeList(ArrayList<String> recipeDat) {
@@ -24,14 +23,14 @@ public class RecipeList extends JFrame {
         setSize(450, 600);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
-        ArrayList<String> recipeData = Controller.gethit();
+        ArrayList<String> recipeData = SearchFormController.gethit();
         listRecipe.setListData(new String[]{});
         btnOK.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String input = tfInput.getText();
                 // Set user choice in the controller
-                Controller.setUserChoice(input);
+                SearchFormController.setUserChoice(input);
                 RecipesDisplayer2.DisplayRecipes();
             }
             //System.out.println(input);
@@ -46,7 +45,7 @@ public class RecipeList extends JFrame {
     }
     public static void main(String[] args) {
         // Assuming you have recipeData from Controller.gethit()
-        ArrayList<String> recipeData = Controller.gethit();
+        ArrayList<String> recipeData = SearchFormController.gethit();
 
         // Create an instance of RecipeList
         RecipeList recipeList = new RecipeList(null);
