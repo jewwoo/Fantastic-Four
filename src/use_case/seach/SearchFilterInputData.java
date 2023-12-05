@@ -3,7 +3,7 @@ package use_case.seach;
 import interface_adapter.search.Controller;
 import org.json.*;
 
-public class GetInput {
+public class SearchFilterInputData {
 
     public static void searchRecipes(){
             //String keyWord, String dietLabels, String healthLabels, String mealType, String dishType, String cuisineType) {

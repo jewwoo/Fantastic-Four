@@ -6,7 +6,7 @@ import view.*;
 
 import java.util.*;
 
-public class RecipesDisplayer {
+public class SearchFilterOuputData {
     
     public static void DisplayRecipes() {
         // Retrieve data from the controller

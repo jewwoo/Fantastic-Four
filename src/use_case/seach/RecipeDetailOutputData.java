@@ -6,7 +6,7 @@ import view.*;
 
 import java.util.*;
 
-public class RecipesDisplayer2 {
+public class RecipeDetailOutputData {
     public static void DisplayRecipes() {
         // Retrieve data from the controller
         JSONObject data = Controller.getRecipeData();
