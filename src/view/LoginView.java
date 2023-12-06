@@ -4,7 +4,6 @@ import interface_adapter.ViewManagerModel;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginState;
 import interface_adapter.login.LoginViewModel;
-import interface_adapter.signup.SignupViewModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,36 +18,31 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 
     public final String viewName = "log in";
     private final LoginViewModel loginViewModel;
-    private final SignupViewModel signupViewModel;
+    private final SignupView signupView;
     private final ViewManagerModel viewManagerModel;
-    private final  SignupView signupView;
-
-
     final JTextField usernameInputField = new JTextField(15);
     private final JLabel usernameErrorField = new JLabel();
 
     final JPasswordField passwordInputField = new JPasswordField(15);
     private final JLabel passwordErrorField = new JLabel();
 
+
+
     final JButton logIn;
     final JButton cancel;
     final JButton signUp;
     private final LoginController loginController;
 
-    public LoginView(LoginViewModel loginViewModel, LoginController controller, SignupViewModel signupViewModel, ViewManagerModel viewManagerModel, SignupView signupView) {
+    public LoginView(LoginViewModel loginViewModel, SignupView signupView, ViewManagerModel viewManagerModel, LoginController controller) {
+        this.signupView = signupView;
+        this.viewManagerModel = viewManagerModel;
 
         this.loginController = controller;
         this.loginViewModel = loginViewModel;
-        this.signupViewModel = signupViewModel;
-        this.viewManagerModel = viewManagerModel;
-        this.signupView = signupView;
-
         this.loginViewModel.addPropertyChangeListener(this);
-
 
         JLabel title = new JLabel("Login Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
-
         LabelTextPanel usernameInfo = new LabelTextPanel(
                 new JLabel("Username"), usernameInputField);
         LabelTextPanel passwordInfo = new LabelTextPanel(
@@ -86,30 +80,26 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
                         if (evt.getSource().equals(signUp)) {
 //                            loginPresenter.setIsSignupSuccess(true);
 
-                            viewManagerModel.setActiveView(signupView.viewName); // Replace "signupView" with the actual key of the signup panel in the CardLayout
+                            LoginView.this.viewManagerModel.setActiveView(signupView.viewName); // Replace "signupView" with the actual key of the signup panel in the CardLayout
                         }
                     }
-                }
-        );
+                });
+                usernameInputField.addKeyListener(new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        LoginState currentState = loginViewModel.getState();
+                        currentState.setUsername(usernameInputField.getText() + e.getKeyChar());
+                        loginViewModel.setState(currentState);
+                    }
 
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                    }
 
-
-        usernameInputField.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                LoginState currentState = loginViewModel.getState();
-                currentState.setUsername(usernameInputField.getText() + e.getKeyChar());
-                loginViewModel.setState(currentState);
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-            }
-        });
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                    }
+                });
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         passwordInputField.addKeyListener(
