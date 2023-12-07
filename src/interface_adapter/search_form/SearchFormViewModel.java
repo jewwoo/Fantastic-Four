@@ -7,6 +7,8 @@ import java.beans.PropertyChangeSupport;
 
 public class SearchFormViewModel extends ViewModel {
 
+    public final String viewName = "Search Form View";
+
     public static final String[] dietSelection = {"balanced",
             "high-fiber",
             "high-protein",
@@ -42,11 +44,11 @@ public class SearchFormViewModel extends ViewModel {
 
     @Override
     public void firePropertyChanged() {
-        return;
+        support.firePropertyChange("state", null, this.state);
     }
 
     @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
-        return;
+        support.addPropertyChangeListener(listener);
     }
 }

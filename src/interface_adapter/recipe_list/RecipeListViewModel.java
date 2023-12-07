@@ -2,7 +2,6 @@ package interface_adapter.recipe_list;
 
 import interface_adapter.ViewModel;
 import interface_adapter.search_form.SearchFormState;
-import view.SearchFormView;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -34,6 +33,4 @@ public class RecipeListViewModel extends ViewModel {
     public RecipeListViewModel() {
         super("Recipe List View");
     }
-
-
 }
