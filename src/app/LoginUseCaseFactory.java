@@ -14,7 +14,13 @@ import use_case.login.LoginOutputBoundary;
 import use_case.login.LoginUserDataAccessInterface;
 import view.LoginView;
 import view.SignupView;
-
+import use_case.clear_users.ClearInputBoundary;
+import use_case.clear_users.ClearInteractor;
+import use_case.clear_users.ClearOutputBoundary;
+import use_case.clear_users.ClearUserDataAccessInterface;
+import interface_adapter.clear_users.ClearController;
+import interface_adapter.clear_users.ClearPresenter;
+import interface_adapter.clear_users.ClearViewModel;
 import javax.swing.*;
 import java.io.IOException;
 
@@ -23,20 +29,20 @@ public class LoginUseCaseFactory {
     /** Prevent instantiation. */
     private LoginUseCaseFactory() {}
 
-    public static LoginView create(
+    public static LoginView create(ClearViewModel clearViewModel,
             ViewManagerModel viewManagerModel,
             LoginViewModel loginViewModel,
             LoggedInViewModel loggedInViewModel,
-            LoginUserDataAccessInterface userDataAccessObject,  SignupViewModel signupViewModel, SignupView signupView)
+            LoginUserDataAccessInterface userDataAccessObject,  SignupViewModel signupViewModel, SignupView signupView,ClearUserDataAccessInterface clearUserDataAccessObject)
    {
 
         try {
             LoginController loginController = createLoginUseCase(viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject, signupViewModel);
 
+            ClearController clearController = createUserclearUseCase(clearViewModel,clearUserDataAccessObject);
 
-            ;
 
-            return new LoginView(loginViewModel, loginController, signupViewModel, viewManagerModel, signupView);
+            return new LoginView(loginViewModel,loginController, signupViewModel, viewManagerModel, signupView,clearViewModel, clearController);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open user data file.");
         }
@@ -61,5 +67,16 @@ public class LoginUseCaseFactory {
                 userDataAccessObject, loginOutputBoundary,userFactory);
 
         return new LoginController(loginInteractor);
+    }
+
+    private static ClearController createUserclearUseCase( ClearViewModel clearViewModel, ClearUserDataAccessInterface clearUserDataAccessInterface) throws IOException {
+
+        // Notice how we pass this method's parameters to the Presenter.
+        ClearOutputBoundary clearOutputBoundary = new ClearPresenter(clearViewModel);
+
+        ClearInputBoundary clearInteractor = new ClearInteractor(
+                clearUserDataAccessInterface , clearOutputBoundary);
+
+        return new ClearController(clearInteractor);
     }
 }

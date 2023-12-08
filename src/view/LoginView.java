@@ -1,10 +1,14 @@
 package view;
 
 import interface_adapter.ViewManagerModel;
+import interface_adapter.clear_users.ClearController;
+import interface_adapter.clear_users.ClearViewModel;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginState;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.signup.SignupViewModel;
+import interface_adapter.clear_users.ClearController;
+import interface_adapter.clear_users.ClearViewModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,8 +26,8 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
     private final SignupViewModel signupViewModel;
     private final ViewManagerModel viewManagerModel;
     private final  SignupView signupView;
-
-
+    private final ClearViewModel clearViewModel;
+    private final ClearController clearController;
     final JTextField usernameInputField = new JTextField(15);
     private final JLabel usernameErrorField = new JLabel();
 
@@ -31,18 +35,19 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
     private final JLabel passwordErrorField = new JLabel();
 
     final JButton logIn;
-    final JButton cancel;
+    private final JButton clear;
     final JButton signUp;
     private final LoginController loginController;
 
-    public LoginView(LoginViewModel loginViewModel, LoginController controller, SignupViewModel signupViewModel, ViewManagerModel viewManagerModel, SignupView signupView) {
+    public LoginView(LoginViewModel loginViewModel, LoginController controller, SignupViewModel signupViewModel, ViewManagerModel viewManagerModel, SignupView signupView,ClearViewModel clearViewModel,ClearController clearController) {
 
         this.loginController = controller;
         this.loginViewModel = loginViewModel;
         this.signupViewModel = signupViewModel;
         this.viewManagerModel = viewManagerModel;
         this.signupView = signupView;
-
+        this.clearViewModel = clearViewModel;
+        this.clearController = clearController;
         this.loginViewModel.addPropertyChangeListener(this);
 
 
@@ -57,8 +62,8 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         JPanel buttons = new JPanel();
         logIn = new JButton(loginViewModel.LOGIN_BUTTON_LABEL);
         buttons.add(logIn);
-        cancel = new JButton(loginViewModel.CANCEL_BUTTON_LABEL);
-        buttons.add(cancel);
+        clear = new JButton(SignupViewModel.CLEAR_BUTTON_LABEL);
+        buttons.add(clear);
 
         signUp = new JButton(loginViewModel.SIGNUP_BUTTON_LABEL);
         buttons.add(signUp);
@@ -78,7 +83,18 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
                 }
         );
 
-        cancel.addActionListener(this);
+        clear.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+
+                        clearController.clearAllUsers();
+
+                        String resultMessage = clearViewModel.getStatusMessage();
+                        JOptionPane.showMessageDialog(LoginView.this, resultMessage);
+                    }
+                }
+        );
 
         signUp.addActionListener(
                 new ActionListener() {
