@@ -88,7 +88,7 @@ public class Main {
         RecipeDetailView recipeDetailView = RecipeDetailUseCaseFactory.createRecipeDetailView(viewManagerModel, recipeListViewModel, recipeDetailViewModel, commentViewModel, commentDataAccessObject, saveRecipeController, loggedInViewModel);
         //CommentView commentView = CommentUseCaseFactory.create(viewManagerModel, recipeDetailViewModel, commentViewModel, commentDataAccessObject);
 
-        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject, signupViewModel, signupView );
+        LoginView loginView = LoginUseCaseFactory.create(clearViewModel,viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject, signupViewModel, signupView, userDataAccessObject );
         views.add(loginView, loginView.viewName);
 
 
