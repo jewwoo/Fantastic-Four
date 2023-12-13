@@ -15,11 +15,6 @@ public class RecipesDisplayer2 {
         String select = SearchFormController.getUserChoice();
 
         RecipeList recipeList = new RecipeList(null);
-        //index = displayRecipeLabels(data, index, arr_length, recipeList);
-        //boolean findOtherRecipes = true;
-
-        //while (findOtherRecipes) {
-            //System.out.println("Input recipe number or\n\t(n)ext to display next 10 recipes\n\t(p)revious to display previous 10 recipes\n\t(q)uit to find other recipes");
 
         switch (select.toLowerCase()) {
             case "q":
@@ -43,10 +38,8 @@ public class RecipesDisplayer2 {
                     currRecipeCls currRecipe = new currRecipeCls(data, selection - 1);
                     displayRecipeDict(currRecipe, recipeList);
                 }
-                //displayRecipeDetails(selection, recipeList);
                 break;
         }
-        //}
     }
 
     public static int displayRecipeLabels(JSONObject data, int index, int arr_length, RecipeList recipeList) {
@@ -68,20 +61,6 @@ public class RecipesDisplayer2 {
         return index;
     }
 
-    //public static void displayRecipeDetails(int selectedIndex, RecipeList recipeList) {
-    //    ArrayList<String> hitsArray = Controller.gethit();
-    //    ArrayList<String> ingredient = new ArrayList<>();
-    //    if (selectedIndex >= 0 && selectedIndex < hitsArray.size()) {
-    //        String selectedRecipe = hitsArray.get(selectedIndex);
-    //        ingredient.add("Details for Recipe #" + (selectedIndex + 1) + ": " + selectedRecipe);
-    //        // Assuming you want to print the details to the console for now
-    //        //System.out.println("Details for Recipe #" + (selectedIndex + 1) + ": " + selectedRecipe);
-    //    } else {
-    //        ingredient.add("Invalid index. Please enter a valid recipe index.");
-    //        //System.out.println("Invalid index. Please enter a valid recipe index.");
-    //    }
-    //    recipeList.updateRecipeList(ingredient);
-    //}
 
     public static void displayRecipeDict(currRecipeCls currRecipe, RecipeList recipeList) {
         ArrayList<String> ingredient = new ArrayList<>();
